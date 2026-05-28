@@ -96,7 +96,7 @@ def data_ecm() -> pd.DataFrame:
         - N/A.
     """
 
-    np.random.seed(42)
+    np.random.seed(1001)
     n = 120 #10 years monthly basis
     dates = pd.date_range("2014-01-01", periods = n, freq = "ME")
 
