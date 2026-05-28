@@ -24,7 +24,7 @@ def plot_return(
         Figure: Showing figure from matplotlib.
 
     Notes:
-        - N/A
+        - N/A.
     """
 
     fig, ax = plt.subplots(figsize = (10, 6))
@@ -58,7 +58,7 @@ def plot_allocation(
         Figure: Showing figure from matplotlib.
 
     Notes:
-        - N/A
+        - N/A.
     """
 
     fig, ax1 = plt.subplots(figsize = (10, 6))
@@ -101,7 +101,7 @@ def plot_project(
         Figure: Showing figure from matplotlib.
 
     Notes:
-        - N/A
+        - N/A.
     """
 
     x = data["deposit_balance"]
