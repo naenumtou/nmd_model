@@ -75,3 +75,68 @@ def data_wealth() -> pd.DataFrame:
     df.set_index("date", inplace = True)
 
     return df
+
+# Generate data for ECM Model
+def data_ecm() -> pd.DataFrame:
+
+    """
+    Generate for ECM Model.
+
+    Description:
+        To generate data for ECM Model. The data is contained the several rates cycle.
+        For example, the policy rate, deposit rate, market rate.
+
+    Args:
+        None.
+
+    Returns:
+        pd.DataFrame: Generated data for ECM Model.
+
+    Notes:
+        - N/A.
+    """
+
+    np.random.seed(42)
+    n = 120 #10 years monthly basis
+    dates = pd.date_range("2014-01-01", periods = n, freq = "ME")
+
+    # Simulate realistic deposit balance + macro
+    r_policy = np.concatenate(
+        [
+            np.linspace(2.5, 1.5, 30), #Easing
+            np.linspace(1.5, 0.5, 30), #Low rate era
+            np.linspace(0.5, 4.0, 30), #Hiking cycle
+            np.linspace(4.0, 3.0, 30), #Normalizing
+        ]
+    )
+
+    r_deposit = r_policy * 0.4 + np.random.normal(0, 0.05, n)  #Pass-through ~40%
+    r_mmkt = r_policy * 0.9 + np.random.normal(0, 0.05, n)
+    r_gap = r_deposit - r_mmkt
+    gdp_growth = 0.03 + np.random.normal(0, 0.005, n)
+    cpi = 0.02 + np.random.normal(0, 0.003, n)
+
+    # Balance: trend + rate response + seasonality + noise
+    trend = np.linspace(100, 160, n)
+    rate_effect = 5 * r_gap #Negative gap → outflow
+    seasonal = 3 * np.sin(2 * np.pi * np.arange(n) / 12)
+    balance = trend + rate_effect + seasonal + np.random.normal(0, 1.5, n)
+    balance = np.maximum(balance, 50)
+
+    # To DataFrame
+    df = pd.DataFrame(
+        {
+            "date": dates,
+            "balance": balance,
+            "r_deposit": r_deposit,
+            "r_policy": r_policy,
+            "r_mmkt": r_mmkt,
+            "r_gap": r_gap,
+            "gdp_growth": gdp_growth,
+            "cpi": cpi
+        }
+    )
+    df["ln_balance"] = np.log(df["balance"])
+    df.set_index("date", inplace = True)
+    
+    return df
