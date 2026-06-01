@@ -3,8 +3,6 @@ import numpy as np
 import pandas as pd
 import warnings
 
-from scipy.special import softmax
-
 warnings.simplefilter(action = "ignore", category = pd.errors.PerformanceWarning)
 
 # Generate a mean-reverting
