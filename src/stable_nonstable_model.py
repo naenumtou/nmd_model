@@ -187,6 +187,7 @@ def stable_gbm(
             "shock"           : float  — worst-case 1-period decline (decimal),
             "non_stable_pct"  : float  — abs(shock),
             "stable_pct"      : float  — 1 - non_stable_pct,
+            "core"            : Series — Stable balance,
             "confidence"      : float  — confidence level used
         }
     """
@@ -208,6 +209,7 @@ def stable_gbm(
         "shock": shock,
         "non_stable_pct": non_stable_pct,
         "stable_pct": 1 - non_stable_pct,
+        "core": balance * (1 - non_stable_pct),
         "confidence": confidence
     }
 
@@ -248,6 +250,7 @@ def stable_drawdown(
             "worst_rolling_avg"    : float  — worst rolling average drawdown,
             "non_stable_pct"       : float  — based on worst rolling average,
             "stable_pct"           : float  — 1 - non_stable_pct,
+            "core"                 : Series — Stable balance,
             "horizon"              : str    — horizon used
         }
     """
@@ -274,9 +277,11 @@ def stable_drawdown(
         "worst_rolling_avg": worst_rolling,
         "non_stable_pct": non_stable_pct,
         "stable_pct": 1 - non_stable_pct,
+        "core": balance * (1 - non_stable_pct),
         "horizon": horizon
     }
 
+# Method Comparison
 def compare_stable_methods(
     ci_result: dict,
     hp_result: dict,
