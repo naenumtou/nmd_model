@@ -56,7 +56,7 @@ def simulate_cohorts(
         bal_0 = balances[orig] * share
 
         # Cohort-specific monthly decay rate (heterogeneous around 2-6%)
-        base_decay = rng.uniform(0.02, 0.06)
+        base_decay = rng.uniform(0.002, 0.01)
 
         cohort_bal = np.empty(n_months - orig)
         cohort_bal[0] = bal_0
