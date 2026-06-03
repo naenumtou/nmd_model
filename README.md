@@ -8,12 +8,29 @@
 ![Seaborn](https://img.shields.io/badge/Seaborn-Visualization-3775a9?style=for-the-badge&logo=plotly&logoColor=white)
 ![MIT](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
 
+
+
+## Overview
+## Project Structure
+## Project Details
+### 1. Synthetic Data Generation
 <p align="center">
 <img width="1536" height="1024" alt="สอนการพัฒนาแบบจำลอง Non-Maturity Deposit Models (NMD Models) ตั้งแต่ต้นจนจบ" src="https://github.com/user-attachments/assets/8e3a4b45-50f2-4eed-9efb-c5ffed67f0e5" />
 </p>
+
 
 <p align="center">
 <img width="1988" height="1376" alt="สอนการพัฒนาแบบจำลอง Non-Maturity Deposit Models (NMD Models) ตั้งแต่ต้นจนจบ" src="https://github.com/user-attachments/assets/46b3e615-88c8-40be-8ccf-e87d3e710d4d" />
 </p>
 
+### 2. Survival Decay Model
+<p align="center">
+<img width="1536" height="1024" alt="สอนการพัฒนาแบบจำลอง Non-Maturity Deposit Models (NMD Models) ตั้งแต่ต้นจนจบ" src="https://github.com/user-attachments/assets/81a2a87c-f7a6-4882-b3ef-84ff67aff078" />
+</p>
 
+<p align="center">
+<img width="1390" height="985" alt="สอนการพัฒนาแบบจำลอง Non-Maturity Deposit Models (NMD Models) ตั้งแต่ต้นจนจบ" src="https://github.com/user-attachments/assets/49ff41ae-caab-41e0-975c-91a4aeca48b9" />
+</p>
+
+### 3. Stable / Non-Stable Decomposition
+### 4. Deposit Rate Model
