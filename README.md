@@ -24,9 +24,7 @@
 </p>
 
 ### 2. Survival Decay Model
-<p align="center">
-<img width="1536" height="1024" alt="สอนการพัฒนาแบบจำลอง Non-Maturity Deposit Models (NMD Models) ตั้งแต่ต้นจนจบ" src="https://github.com/user-attachments/assets/81a2a87c-f7a6-4882-b3ef-84ff67aff078" />
-</p>
+
 
 <p align="center">
 <img width="1390" height="985" alt="สอนการพัฒนาแบบจำลอง Non-Maturity Deposit Models (NMD Models) ตั้งแต่ต้นจนจบ" src="https://github.com/user-attachments/assets/49ff41ae-caab-41e0-975c-91a4aeca48b9" />
