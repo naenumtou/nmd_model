@@ -18,7 +18,6 @@
 <img width="1536" height="1024" alt="สอนการพัฒนาแบบจำลอง Non-Maturity Deposit Models (NMD Models) ตั้งแต่ต้นจนจบ" src="https://github.com/user-attachments/assets/8e3a4b45-50f2-4eed-9efb-c5ffed67f0e5" />
 </p>
 
-
 <p align="center">
 <img width="1988" height="1376" alt="สอนการพัฒนาแบบจำลอง Non-Maturity Deposit Models (NMD Models) ตั้งแต่ต้นจนจบ" src="https://github.com/user-attachments/assets/46b3e615-88c8-40be-8ccf-e87d3e710d4d" />
 </p>
@@ -28,12 +27,19 @@
 <img width="1536" height="1024" alt="สอนการพัฒนาแบบจำลอง Non-Maturity Deposit Models (NMD Models) ตั้งแต่ต้นจนจบ" src="https://github.com/user-attachments/assets/1be27c11-4472-4f1d-834e-388f49f0509e" />
 </p>
 
-
 <p align="center">
 <img width="1390" height="985" alt="สอนการพัฒนาแบบจำลอง Non-Maturity Deposit Models (NMD Models) ตั้งแต่ต้นจนจบ" src="https://github.com/user-attachments/assets/49ff41ae-caab-41e0-975c-91a4aeca48b9" />
 </p>
 
 ### 3. Stable / Non-Stable Decomposition
+<p align="center">
+<img width="1536" height="1024" alt="สอนการพัฒนาแบบจำลอง Non-Maturity Deposit Models (NMD Models) ตั้งแต่ต้นจนจบ" src="https://github.com/user-attachments/assets/efbe6d3d-2316-42fc-9e7f-5c4158d38c99" />
+</p>
+
+<p align="center">
+<img width="1390" height="985" alt="สอนการพัฒนาแบบจำลอง Non-Maturity Deposit Models (NMD Models) ตั้งแต่ต้นจนจบ" src="https://github.com/user-attachments/assets/691b6eb9-4ca4-4969-a8cf-c316dec8e1e7" />
+</p>
+
 ### 4. Deposit Rate Model
 ### 5. Deposit Decay Model
 ### 6. Economic Theory
