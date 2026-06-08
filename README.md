@@ -41,6 +41,12 @@
 </p>
 
 ### 4. Deposit Rate Model
+<p align="center">
+<img width="1389" height="985" alt="สอนการพัฒนาแบบจำลอง Non-Maturity Deposit Models (NMD Models) ตั้งแต่ต้นจนจบ" src="https://github.com/user-attachments/assets/d483dd50-e5d4-4284-9458-1919f847b790" />
+</p>
+
+
+
 ### 5. Deposit Decay Model
 ### 6. Economic Theory
 ### 7. NMD Floor
