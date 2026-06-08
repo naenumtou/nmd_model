@@ -31,6 +31,9 @@
 <img width="1390" height="985" alt="สอนการพัฒนาแบบจำลอง Non-Maturity Deposit Models (NMD Models) ตั้งแต่ต้นจนจบ" src="https://github.com/user-attachments/assets/49ff41ae-caab-41e0-975c-91a4aeca48b9" />
 </p>
 
+#### 2.1 Non-Parametric
+#### 2.2 Regression
+
 ### 3. Stable / Non-Stable Decomposition
 <p align="center">
 <img width="1536" height="1024" alt="สอนการพัฒนาแบบจำลอง Non-Maturity Deposit Models (NMD Models) ตั้งแต่ต้นจนจบ" src="https://github.com/user-attachments/assets/efbe6d3d-2316-42fc-9e7f-5c4158d38c99" />
@@ -40,16 +43,32 @@
 <img width="1390" height="985" alt="สอนการพัฒนาแบบจำลอง Non-Maturity Deposit Models (NMD Models) ตั้งแต่ต้นจนจบ" src="https://github.com/user-attachments/assets/691b6eb9-4ca4-4969-a8cf-c316dec8e1e7" />
 </p>
 
+#### 3.1 Confidence Interval
+#### 3.2 Hodrick-Prescott
+#### 3.3 Geometric Brownian Motion
+#### 3.4 Drawdowm Analysis
+
 ### 4. Deposit Rate Model
 <p align="center">
 <img width="1389" height="985" alt="สอนการพัฒนาแบบจำลอง Non-Maturity Deposit Models (NMD Models) ตั้งแต่ต้นจนจบ" src="https://github.com/user-attachments/assets/d483dd50-e5d4-4284-9458-1919f847b790" />
 </p>
 
-
+#### 4.1 Beta Regression
+#### 4.2 Threshold Model
+#### 4.3 Jarrow Ven Deventer
 
 ### 5. Deposit Decay Model
+#### 5.1 Historical Runoff Profile
+#### 5.2 Replicating Portfolio
+
 ### 6. Economic Theory
+#### 6.1 Dynamics Model Simulation
+#### 6.2 Economic Value of Equity (EVE)
+
 ### 7. NMD Floor
 ### 8. Structual Hedge - Caterpillar
 ### 9. Wealth Allocation Model
 ### 10. IRRBB Reporting
+
+## License
+MIT · Built for learning purposes
