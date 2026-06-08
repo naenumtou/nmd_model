@@ -12,6 +12,54 @@
 
 ## Overview
 ## Project Structure
+```
+nmd_model/
+├── model/                                        #Trainned model and parameters (pkl.)
+│   ├── hazard_rate.pkl
+│   ├── ci_model.pkl
+│   ├── hp_model.pkl
+│   ├── gbm_model.pkl
+│   ├── ddm_model.pkl
+│   ├── ddy_model.pkl
+│   ├── beta_model.pkl
+│   ├── threshold_model.pkl
+│   ├── jvd_model.pkl
+│   ├── threshold_model.pkl
+│   ├── runoff_model.pkl
+│   ├── replicating_weights.pkl
+│   ├── yield_curve.pkl
+│   └── dynamics_model.pkl
+├── notebooks/
+│   ├── 01_data_generation.ipynb
+│   ├── 02_survival_decay.ipynb
+│   ├── 03_stable_nonstable.ipynb
+│   ├── 04_deposit_rate_model.ipynb
+│   ├── 05_deposit_decay.ipynb
+│   ├── 06_economic_theory.ipynb
+│   ├── 07_nmd_floor.ipynb
+│   ├── 08_structural_hedge.ipynb
+│   ├── 09_wealth_allocation.ipynb
+│   └── 10_irrbb_integration.ipynb
+├── src/
+│   ├── data_generator.py
+│   ├── survival_analysis.py
+│   ├── stable_nonstable_model.py
+│   ├── deposit_rate_model.py
+│   ├── deposit_decay_model.py
+│   ├── economic_theory.py
+│   ├── nmd_floor.py
+│   ├── caterpillar.py
+│   ├── wealth_allocation.py
+│   ├── reporting.py
+│   └── plot_function.py
+├── data/          
+│   ├── processed
+│   └── raw/
+|   └── └── nmd_data.parquet
+├── requirements.txt
+└── README.md
+```
+
 ## Project Details
 ### 1. Synthetic Data Generation
 <p align="center">
