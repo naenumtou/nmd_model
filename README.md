@@ -119,6 +119,12 @@ nmd_model/
 #### 5.2 Replicating Portfolio
 
 ### 6. Economic Theory
+<p align="center">
+<img width="1536" height="1024" alt="สอนการพัฒนาแบบจำลอง Non-Maturity Deposit Models (NMD Models) ตั้งแต่ต้นจนจบ" src="https://github.com/user-attachments/assets/8de5608b-dde7-4d91-8bc2-ea50093f795a" />
+</p>
+
+
+
 #### 6.1 Dynamics Model Simulation
 #### 6.2 Economic Value of Equity (EVE)
 
