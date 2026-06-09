@@ -110,6 +110,11 @@ nmd_model/
 #### 4.3 Jarrow Ven Deventer
 
 ### 5. Deposit Decay Model
+<p align="center">
+<img width="1536" height="1024" alt="สอนการพัฒนาแบบจำลอง Non-Maturity Deposit Models (NMD Models) ตั้งแต่ต้นจนจบ" src="https://github.com/user-attachments/assets/c0a98820-d1ab-4628-9e35-c633e11d2747" />
+</p>
+
+
 #### 5.1 Historical Runoff Profile
 #### 5.2 Replicating Portfolio
 
