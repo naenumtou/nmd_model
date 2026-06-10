@@ -114,6 +114,9 @@ nmd_model/
 <img width="1536" height="1024" alt="สอนการพัฒนาแบบจำลอง Non-Maturity Deposit Models (NMD Models) ตั้งแต่ต้นจนจบ" src="https://github.com/user-attachments/assets/c0a98820-d1ab-4628-9e35-c633e11d2747" />
 </p>
 
+<p align="center">
+<img width="1380" height="986" alt="สอนการพัฒนาแบบจำลอง Non-Maturity Deposit Models (NMD Models) ตั้งแต่ต้นจนจบ" src="https://github.com/user-attachments/assets/b1fd0826-de7a-430b-814b-32d0b91a45b3" />
+</p>
 
 #### 5.1 Historical Runoff Profile
 #### 5.2 Replicating Portfolio
@@ -138,6 +141,11 @@ nmd_model/
 </p>
 
 ### 8. Structual Hedge - Caterpillar
+
+<p align="center">
+<img width="1386" height="985" alt="สอนการพัฒนาแบบจำลอง Non-Maturity Deposit Models (NMD Models) ตั้งแต่ต้นจนจบ" src="https://github.com/user-attachments/assets/262c3aac-5d3e-4526-875f-07e923925990" />
+</p>
+
 ### 9. Wealth Allocation Model
 ### 10. IRRBB Reporting
 
