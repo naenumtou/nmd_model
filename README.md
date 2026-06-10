@@ -123,12 +123,20 @@ nmd_model/
 <img width="1536" height="1024" alt="สอนการพัฒนาแบบจำลอง Non-Maturity Deposit Models (NMD Models) ตั้งแต่ต้นจนจบ" src="https://github.com/user-attachments/assets/8de5608b-dde7-4d91-8bc2-ea50093f795a" />
 </p>
 
-
+<p align="center">
+<img width="1390" height="985" alt="สอนการพัฒนาแบบจำลอง Non-Maturity Deposit Models (NMD Models) ตั้งแต่ต้นจนจบ" src="https://github.com/user-attachments/assets/e6cd34ac-9510-4fd8-b601-c65fac66d0e2" />
+</p>
 
 #### 6.1 Dynamics Model Simulation
 #### 6.2 Economic Value of Equity (EVE)
 
 ### 7. NMD Floor
+
+
+<p align="center">
+<img width="690" height="985" alt="สอนการพัฒนาแบบจำลอง Non-Maturity Deposit Models (NMD Models) ตั้งแต่ต้นจนจบ" src="https://github.com/user-attachments/assets/7ff6135c-d968-4c02-8a1a-0fa6b8f641ce" />
+</p>
+
 ### 8. Structual Hedge - Caterpillar
 ### 9. Wealth Allocation Model
 ### 10. IRRBB Reporting
