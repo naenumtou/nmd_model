@@ -147,7 +147,21 @@ nmd_model/
 </p>
 
 ### 9. Wealth Allocation Model
+
+<p align="center">
+<img width="1390" height="985" alt="สอนการพัฒนาแบบจำลอง Non-Maturity Deposit Models (NMD Models) ตั้งแต่ต้นจนจบ" src="https://github.com/user-attachments/assets/48e3f64c-5637-4b42-b90f-46b6472c8b24" />
+
+</p>
+
+
 ### 10. IRRBB Reporting
+
+<p align="center">
+<img width="1389" height="985" alt="สอนการพัฒนาแบบจำลอง Non-Maturity Deposit Models (NMD Models) ตั้งแต่ต้นจนจบ" src="https://github.com/user-attachments/assets/f800c995-ee5c-4cf8-8bba-dd60e00014d1" />
+</p>
+
+
+
 
 ## License
 MIT · Built for learning purposes
