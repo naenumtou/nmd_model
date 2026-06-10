@@ -134,7 +134,9 @@ nmd_model/
 #### 6.2 Economic Value of Equity (EVE)
 
 ### 7. NMD Floor
-
+<p align="center">
+<img width="1536" height="1024" alt="สอนการพัฒนาแบบจำลอง Non-Maturity Deposit Models (NMD Models) ตั้งแต่ต้นจนจบ" src="https://github.com/user-attachments/assets/d894fdaf-8652-4912-9e38-ce87e81568f2" />
+</p>
 
 <p align="center">
 <img width="690" height="985" alt="สอนการพัฒนาแบบจำลอง Non-Maturity Deposit Models (NMD Models) ตั้งแต่ต้นจนจบ" src="https://github.com/user-attachments/assets/7ff6135c-d968-4c02-8a1a-0fa6b8f641ce" />
