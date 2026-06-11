@@ -196,6 +196,7 @@ def plot_survival_results(
     ax.legend()
     ax.xaxis.set_major_formatter(mdates.DateFormatter("%Y"))
     ax.xaxis.set_major_locator(mdates.YearLocator(2))
+    
     plt.tight_layout()
 
     return plt.show()
@@ -807,7 +808,6 @@ def plot_floor_results(
     ax.set_ylabel("Floor value (MB)")
     ax.legend()
 
-
     plt.tight_layout()
     
     return plt.show()
@@ -1140,7 +1140,7 @@ def plot_irrbb_results(
     ax.set_xticks(x)
     ax.set_xticklabels(nii_t["scenario"])
     ax.legend()
-
-
+    
     plt.tight_layout()
+    
     return plt.show()
