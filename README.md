@@ -11,7 +11,7 @@
 A complete end-to-end implementation of Non-Maturity Deposit (NMD) Models for IRRBB Measurement, behavioral analysis, and Asset-Liability Management (ALM) — built in Python across 10 sequential Jupyter notebooks.
 
 <p align="center">
-<img width="1280" height="720" alt="สอนการพัฒนาแบบจำลอง Non-Maturity Deposit Models (NMD Models) ตั้งแต่ต้นจนจบ" src="https://github.com/user-attachments/assets/0cbfe07a-8114-458e-ae54-fe48973380c4" />
+<img width="1536" height="1024" alt="สอนการพัฒนาแบบจำลอง Non-Maturity Deposit Models (NMD Models) ตั้งแต่ต้นจนจบ" src="https://github.com/user-attachments/assets/b49ff7f7-1234-484c-867b-2e2ecb2eb126" />
 </p>
 
 ## Overview
