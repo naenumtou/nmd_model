@@ -9,6 +9,14 @@
 ![MIT](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
 
 
+fff
+
+<p align="center">
+<img width="1280" height="720" alt="สอนการพัฒนาแบบจำลอง Non-Maturity Deposit Models (NMD Models) ตั้งแต่ต้นจนจบ" src="https://github.com/user-attachments/assets/0cbfe07a-8114-458e-ae54-fe48973380c4" />
+</p>
+
+
+
 
 ## Overview
 ## Project Structure
