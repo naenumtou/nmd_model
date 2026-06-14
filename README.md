@@ -143,27 +143,31 @@ nmd_model/
 </p>
 
 ### 8. Structual Hedge - Caterpillar
+<p align="center">
+<img width="1536" height="1024" alt="สอนการพัฒนาแบบจำลอง Non-Maturity Deposit Models (NMD Models) ตั้งแต่ต้นจนจบ" src="https://github.com/user-attachments/assets/0cb17ac8-4ec0-45e4-9ee4-9e25b4c2b86b" />
+</p>
 
 <p align="center">
 <img width="1386" height="985" alt="สอนการพัฒนาแบบจำลอง Non-Maturity Deposit Models (NMD Models) ตั้งแต่ต้นจนจบ" src="https://github.com/user-attachments/assets/262c3aac-5d3e-4526-875f-07e923925990" />
 </p>
 
 ### 9. Wealth Allocation Model
+<p align="center">
+<img width="1536" height="1024" alt="สอนการพัฒนาแบบจำลอง Non-Maturity Deposit Models (NMD Models) ตั้งแต่ต้นจนจบ" src="https://github.com/user-attachments/assets/1cf328fc-5080-4781-acb7-808aa0e84a22" />
+</p>
 
 <p align="center">
 <img width="1390" height="985" alt="สอนการพัฒนาแบบจำลอง Non-Maturity Deposit Models (NMD Models) ตั้งแต่ต้นจนจบ" src="https://github.com/user-attachments/assets/48e3f64c-5637-4b42-b90f-46b6472c8b24" />
-
 </p>
 
-
 ### 10. IRRBB Reporting
+<p align="center">
+<img width="1536" height="1024" alt="สอนการพัฒนาแบบจำลอง Non-Maturity Deposit Models (NMD Models) ตั้งแต่ต้นจนจบ" src="https://github.com/user-attachments/assets/8ed872c1-3f08-49ac-a07f-99300c41dcf8" />
+</p>
 
 <p align="center">
 <img width="1389" height="985" alt="สอนการพัฒนาแบบจำลอง Non-Maturity Deposit Models (NMD Models) ตั้งแต่ต้นจนจบ" src="https://github.com/user-attachments/assets/f800c995-ee5c-4cf8-8bba-dd60e00014d1" />
 </p>
-
-
-
 
 ## License
 MIT · Built for learning purposes
