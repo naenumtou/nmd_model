@@ -8,18 +8,35 @@
 ![Seaborn](https://img.shields.io/badge/Seaborn-Visualization-3775a9?style=for-the-badge&logo=plotly&logoColor=white)
 ![MIT](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
 
-
-fff
+A complete end-to-end implementation of Non-Maturity Deposit (NMD) Models for IRRBB Measurement, behavioral analysis, and Asset-Liability Management (ALM) — built in Python across 10 sequential Jupyter notebooks.
 
 <p align="center">
 <img width="1280" height="720" alt="สอนการพัฒนาแบบจำลอง Non-Maturity Deposit Models (NMD Models) ตั้งแต่ต้นจนจบ" src="https://github.com/user-attachments/assets/0cbfe07a-8114-458e-ae54-fe48973380c4" />
 </p>
 
-
-
-
 ## Overview
+### What is NMD and why does it matter?
+**Non-Maturity Deposits (NMD)** are bank deposits with no contractual maturity date e.g., savings accounts, current accounts, and demand deposits. Customers can withdraw at any time, yet in practice most balances remain stable for years. This creates a fundamental challenge for banks:
+
+- **Liquidity risk (ILAAP)**: If customers suddenly withdraw, the bank must have enough liquid assets to pay them.
+- **Interest rate risk (IRRBB)**: The bank invests deposits at market rates but pays customers a lower "sticky" deposit rate. When interest rates change, both the value of investments and the cost of funding shift — but not at the same speed.
+
+Under **BCBS 368** (*Interest Rate Risk in the Banking Book*, April 2016), banks are required to model NMD Behavior explicitly, quantify how sensitive their economic value is to interest rate movements, and report this exposure to regulators. This repository implements the complete NMD Modeling framework from raw data to IRRBB Disclosure tables with consideration of ILAAP integrated. 
+
 ## Project Structure
+The project is built as **10 sequential Jupyter notebooks** (Notebook 01 - Notebook 10), each responsible for one modeling layer. Outputs from upstream notebooks flow as inputs into downstream ones via serialized model objects (`.pkl`).
+
+```
+Synthetic Data → Behavioral Models → Rate Models → Valuation → Hedging → IRRBB Report
+     NB01            NB02–NB03        NB04–NB05    NB06–NB07  NB08–NB09     NB10
+```
+
+### What makes this implementation distinctive
+- Fully reproducible — Every result can be traced back to Notebook 01's random seed.
+- BCBS 368 Compliant — EVE Discount method, regulatory caps, and scenario shocks follow the standard.
+- No OOP — All logic implemented as standalone functions with full docstrings.
+- Modular — Each notebook can be modified or extended independently.
+
 ```
 nmd_model/
 ├── model/                                        #Trainned model and parameters (pkl.)
@@ -68,11 +85,68 @@ nmd_model/
 └── README.md
 ```
 
+### Data Flow Architecture
+Each notebook exports key outputs via `pickle` for downstream use. The diagram below shows the complete dependency chain.
+
+```
+NB01: Data Generation
+  └─► nmd_data.parquet
+        │
+        ├─► NB02: Survival Decay
+        │     └─► hazard_rate.pkl ──────────────────────────────► NB05
+        │
+        ├─► NB03: Stable/Non-Stable
+        │     └─► stable_pct (CI method) ──────────────────────► NB05
+        │
+        ├─► NB04: Deposit Rate Model
+        │     └─► γ=0.2072, α=0.0008, β₂=0.0797 ─────────────► NB05, NB06
+        │
+        ├─► NB05: Deposit Decay
+        │     └─► core_balance=3,823 MB, WAL=2.85Y ───────────► NB06, NB08, NB09, NB10
+        │     └─► IRRBB repricing buckets ─────────────────────► NB10
+        │
+        ├─► NB06: Economic Theory (EVE)
+        │     └─► EVE=7,870 MB, ΔEVE=−1,062 MB ─────────────────► NB10
+        │
+        ├─► NB07: NMD Floor
+        │     └─► Floor K=0%: 21 MB, K=d₀: 50 MB ──────────────► NB10
+        │
+        ├─► NB08: Structural Hedge
+        │     └─► 5Y/5 tranches, NII=186 MB ────────────────────► NB09, NB10
+        │
+        └─► NB09: Wealth Allocation
+              └─► w_cat=85%, NII=172 MB, LCR=173%, NSFR=135% ──► NB10
+                  └─► Asset repricing profile ────────────────────► NB10
+
+NB10: IRRBB Integration
+  └─► 6 output tables:
+        1. NMD Model Summary
+        2. EVE Sensitivity Table
+        3. NII Sensitivity Table
+        4. Repricing Gap
+        5. Net Repricing Gap (Asset − Liability)
+        6. LCR / NSFR
+```
+
+
 ## Project Details
 ### 1. Synthetic Data Generation
 <p align="center">
 <img width="1536" height="1024" alt="สอนการพัฒนาแบบจำลอง Non-Maturity Deposit Models (NMD Models) ตั้งแต่ต้นจนจบ" src="https://github.com/user-attachments/assets/8e3a4b45-50f2-4eed-9efb-c5ffed67f0e5" />
 </p>
+
+**Purpose:** Generate 150 months of realistic NMD Data capturing the joint dynamics of market rate, deposit rate, deposit balance, and CDS spread. The real NMD Data is proprietary and varies significantly across institutions. Synthetic data allows full reproducibility and enables stress scenario testing by simply changing seed parameters.
+
+**The four variables are simulated jointly with realistic correlations**
+
+| Variable | Model |
+|---|---|
+| Market rate `r_t` | AR(1) on changes |
+| Deposit rate `d_t` | Asymmetric error correction |
+| Balance `D_t` | Log-linear with macro drivers |
+| CDS spread `cs_t` | Log AR(1) |
+
+**Output:** `data/raw/nmd_data.parquet` — 150 rows × 4 columns
 
 <p align="center">
 <img width="1988" height="1376" alt="สอนการพัฒนาแบบจำลอง Non-Maturity Deposit Models (NMD Models) ตั้งแต่ต้นจนจบ" src="https://github.com/user-attachments/assets/46b3e615-88c8-40be-8ccf-e87d3e710d4d" />
