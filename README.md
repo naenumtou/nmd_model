@@ -165,7 +165,7 @@ NB10: IRRBB Integration
 3. Average across all surviving cohorts at time `t`: `h(t) = mean(RR(t, c))`
 
 **Why not Cox Regression?**
-Cox PH is designed for binary events (account closed vs. not closed). NMD has *partial runoff* — balance declines gradually with no single exit event. Discrete hazard rates capture this continuous erosion.
+Cox PH is designed for binary events (closed vs. open). NMD has *partial runoff* that balance declines gradually with no single exit event. Discrete hazard rates capture this continuous erosion.
 
 **Stressed runoff — two approaches:**
 
@@ -182,22 +182,37 @@ Cox PH is designed for binary events (account closed vs. not closed). NMD has *p
 <img width="1390" height="985" alt="สอนการพัฒนาแบบจำลอง Non-Maturity Deposit Models (NMD Models) ตั้งแต่ต้นจนจบ" src="https://github.com/user-attachments/assets/49ff41ae-caab-41e0-975c-91a4aeca48b9" />
 </p>
 
-#### 2.1 Non-Parametric
-#### 2.2 Regression
-
 ### 3. Stable / Non-Stable Decomposition
 <p align="center">
 <img width="1536" height="1024" alt="สอนการพัฒนาแบบจำลอง Non-Maturity Deposit Models (NMD Models) ตั้งแต่ต้นจนจบ" src="https://github.com/user-attachments/assets/efbe6d3d-2316-42fc-9e7f-5c4158d38c99" />
 </p>
 
+**Purpose:** Decompose total balance into core and non-core (volatile) portions, subject to BCBS 368 regulatory caps. This decomposition matters because only the stable portion can be invested long term. Investing volatile balances in long duration assets creates liquidity risk.
+
+#### 3.1 Confidence Interval
+OLS regression of balance on time trend, using the lower 95% CI as the core floor:
+```
+stable_pct = mean(lower_CI) / mean(balance)
+```
+#### 3.2 Hodrick-Prescott
+Decomposes balance into trend and cycle using λ = 1,600. The cycle component is non-core.
+#### 3.3 Geometric Brownian Motion
+Simulates worst-case paths using historical log-return volatility. Balances below the P5 quantile are non-core.
+#### 3.4 Drawdowm Analysis
+Maximum historical MoM or YoY decline percentage is treated as the non-corefraction.
+
+**BCBS 368 Regulatory Caps:**
+| Segment | Max Core % | Max WAL |
+|---|---|---|
+| Retail Transactional | 90% | 5.0Y |
+| Retail Non-transactional | 70% | 4.5Y |
+| Wholesale | 50% | 4.0Y |
+
+**Output:** HP Method `stable_pct = 96.36%` on the synthetic data.
+
 <p align="center">
 <img width="1390" height="985" alt="สอนการพัฒนาแบบจำลอง Non-Maturity Deposit Models (NMD Models) ตั้งแต่ต้นจนจบ" src="https://github.com/user-attachments/assets/691b6eb9-4ca4-4969-a8cf-c316dec8e1e7" />
 </p>
-
-#### 3.1 Confidence Interval
-#### 3.2 Hodrick-Prescott
-#### 3.3 Geometric Brownian Motion
-#### 3.4 Drawdowm Analysis
 
 ### 4. Deposit Rate Model
 <p align="center">
