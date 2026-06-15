@@ -157,6 +157,27 @@ NB10: IRRBB Integration
 <img width="1536" height="1024" alt="สอนการพัฒนาแบบจำลอง Non-Maturity Deposit Models (NMD Models) ตั้งแต่ต้นจนจบ" src="https://github.com/user-attachments/assets/fefa8aee-71c2-45fe-84e6-ea68b195db90" />
 </p>
 
+**Purpose:** Measure how quickly deposit balances run off each month using cohort analysis. The aggregated balance series hides vintage effects. Accounts opened during a low rate environment behave differently from those opened during rate hikes. Cohort analysis separates these effects precisely.
+
+**Method — Discrete Hazard Rate:**
+1. Build a balance matrix `B(t, c)` where `t` = observation month, `c` = cohort (origination month)
+2. Compute monthly runoff rate per cohort: `RR(t, c) = 1 − B(t, c) / B(t−1, c)`
+3. Average across all surviving cohorts at time `t`: `h(t) = mean(RR(t, c))`
+
+**Why not Cox Regression?**
+Cox PH is designed for binary events (account closed vs. not closed). NMD has *partial runoff* — balance declines gradually with no single exit event. Discrete hazard rates capture this continuous erosion.
+
+**Stressed runoff — two approaches:**
+
+| Approach | Method | Use Case |
+|---|---|---|
+| Percentile | P95 of `h(t)` | ILAAP Base stress floor |
+| MEV Regression | `h(t) = α + β₁·r_repo + β₂·unemployment + ε` | Macro scenario projection |
+
+**Output:**
+- `hazard_rate.pkl` — monthly hazard rates for first 24 months
+- Average base hazard ≈ 3.65% per month
+
 <p align="center">
 <img width="1390" height="985" alt="สอนการพัฒนาแบบจำลอง Non-Maturity Deposit Models (NMD Models) ตั้งแต่ต้นจนจบ" src="https://github.com/user-attachments/assets/49ff41ae-caab-41e0-975c-91a4aeca48b9" />
 </p>
