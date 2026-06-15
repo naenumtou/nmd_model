@@ -128,7 +128,6 @@ NB10: IRRBB Integration
         6. LCR / NSFR
 ```
 
-
 ## Project Details
 ### 1. Synthetic Data Generation
 <p align="center">
@@ -219,25 +218,69 @@ Maximum historical MoM or YoY decline percentage is treated as the non-corefract
 <img width="1536" height="1024" alt="สอนการพัฒนาแบบจำลอง Non-Maturity Deposit Models (NMD Models) ตั้งแต่ต้นจนจบ" src="https://github.com/user-attachments/assets/7710d3d3-0453-4fe1-940e-1d0e889f589d" />
 </p>
 
+**Purpose:** Model how deposit rates respond to changes in market rates considering both in the short run and long run. The pass-through speed determines how quickly the bank's funding cost increases when rates rise. Slow pass-through means sticky deposit rates that wider spreads for longer where creating implicit duration risk.
+
+#### 4.1 Beta Regression (Long-run Pass-through)
+```
+d = α + β·r   →   β = 0.2072
+```
+A 100bps rise in market rates produces only a 20.72bps rise in deposit rates in the long run.
+#### 4.2 Threshold Model
+Banks raise deposit rates slowly (λ⁺ = 0.15) but cut them quickly (λ⁻ = 0.45) — protecting margins on the way down. Also estimates bank spread `α = 0.0008`.
+#### 4.3 Jarrow Ven Deventer
+```
+Δd_t = β₀ + β₁·t + β₂·Δr_t   →   β₂ = 0.0797
+```
+Only ~7.97% of any rate change passes through to deposit rates in the same month.
+
+**Output:**
+| Parameter | Value | Meaning |
+|---|---|---|
+| γ (gamma) | 0.2072 | Long-run pass-through |
+| α (alpha) | 0.0008 | Bank spread |
+| β₂ (beta_2) | 0.0797 | Short-term pass-through |
+
 <p align="center">
 <img width="1389" height="985" alt="สอนการพัฒนาแบบจำลอง Non-Maturity Deposit Models (NMD Models) ตั้งแต่ต้นจนจบ" src="https://github.com/user-attachments/assets/d483dd50-e5d4-4284-9458-1919f847b790" />
 </p>
-
-#### 4.1 Beta Regression
-#### 4.2 Threshold Model
-#### 4.3 Jarrow Ven Deventer
 
 ### 5. Deposit Decay Model
 <p align="center">
 <img width="1536" height="1024" alt="สอนการพัฒนาแบบจำลอง Non-Maturity Deposit Models (NMD Models) ตั้งแต่ต้นจนจบ" src="https://github.com/user-attachments/assets/c0a98820-d1ab-4628-9e35-c633e11d2747" />
 </p>
 
+**Purpose:** Build a forward 60-month(s) runoff portfolio profile of core deposits and producing by replicating portfolio for the IRRBB Repricing gap distribution.
+
+**Core Balance Formula:**
+```
+Core Balance = Total Balance × stable_pct × (1 − β)
+             = 5,039 MB × 96.36% × (1 − 0.2072) = 3,850 MB
+```
+- `stable_pct`: Behavioural stability (does not exhibit volatile withdrawal patterns)
+- `(1 − β)`: Repricing stickiness (does not reprice immediately when market rates change)
+
+
+#### 5.1 Historical Runoff Profile
+```python
+Maximise  WAL(seed)
+s.t.      WAL ≤ 5.0Y            # BCBS 368 cap
+          Core_remaining ≤ 90%  # BCBS 368 cap
+```
+Solved by `scipy.optimize.differential_evolution` with tolerance 1e-8.
+
+#### 5.2 Replicating Portfolio
+```
+Minimise  std(X·w − margin − deposit_rate)
+s.t.      Σwᵢ = 1,  WAL ≤ 5Y,  0 ≤ wᵢ ≤ 50%
+```
+
+**Output:** Weight Average Life (WAL) = **2.85 years**
+
 <p align="center">
 <img width="1380" height="986" alt="สอนการพัฒนาแบบจำลอง Non-Maturity Deposit Models (NMD Models) ตั้งแต่ต้นจนจบ" src="https://github.com/user-attachments/assets/b1fd0826-de7a-430b-814b-32d0b91a45b3" />
 </p>
 
-#### 5.1 Historical Runoff Profile
-#### 5.2 Replicating Portfolio
+
 
 ### 6. Economic Theory
 <p align="center">
