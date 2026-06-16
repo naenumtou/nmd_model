@@ -24,7 +24,7 @@ A complete end-to-end implementation of Non-Maturity Deposit (NMD) Models for IR
 Under **BCBS 368** (*Interest Rate Risk in the Banking Book*, April 2016), banks are required to model NMD Behavior explicitly, quantify how sensitive their economic value is to interest rate movements, and report this exposure to regulators. This repository implements the complete NMD Modeling framework from raw data to IRRBB Disclosure tables with consideration of ILAAP integrated. 
 
 ## Project Structure
-The project is built as **10 sequential Jupyter notebooks** (Notebook 01 - Notebook 10), each responsible for one modeling layer. Outputs from upstream notebooks flow as inputs into downstream ones via serialized model objects (`.pkl`).
+The project is built as **10 Sequential Jupyter Notebooks** (Notebook 01 - Notebook 10), each responsible for one modeling layer. Outputs from upstream notebooks flow as inputs into downstream ones via serialized model objects (`.pkl`).
 
 ```
 Synthetic Data → Behavioral Models → Rate Models → Valuation → Hedging → IRRBB Report
@@ -259,7 +259,6 @@ Core Balance = Total Balance × stable_pct × (1 − β)
 - `stable_pct`: Behavioural stability (does not exhibit volatile withdrawal patterns)
 - `(1 − β)`: Repricing stickiness (does not reprice immediately when market rates change)
 
-
 #### 5.1 Historical Runoff Profile
 ```python
 Maximise  WAL(seed)
@@ -280,19 +279,45 @@ s.t.      Σwᵢ = 1,  WAL ≤ 5Y,  0 ≤ wᵢ ≤ 50%
 <img width="1380" height="986" alt="สอนการพัฒนาแบบจำลอง Non-Maturity Deposit Models (NMD Models) ตั้งแต่ต้นจนจบ" src="https://github.com/user-attachments/assets/b1fd0826-de7a-430b-814b-32d0b91a45b3" />
 </p>
 
-
-
 ### 6. Economic Theory
 <p align="center">
 <img width="1536" height="1024" alt="สอนการพัฒนาแบบจำลอง Non-Maturity Deposit Models (NMD Models) ตั้งแต่ต้นจนจบ" src="https://github.com/user-attachments/assets/8de5608b-dde7-4d91-8bc2-ea50093f795a" />
 </p>
 
+**Purpose:** Measure the present value of the bank's future NMD Spread income, and quantify its sensitivity to interest rate shocks.
+
+**Cash Flow Definition:** The shock is *subtracted from r_t* to isolate true NMD Sensitivity, not rate-level windfall. Without this, stressed EVE always exceeds base EVE and ΔEVE is always positive that economically meaningless.
+```
+CF_t = D_t × ((r_t − shock) − d_t)
+```
+**Four jointly simulated drivers (1,000 paths × 60 months):**
+| Driver | Model | Key Feature |
+|---|---|---|
+| `r_t` | AR(1) on changes | Mean reverts to 5% |
+| `d_t` | Error Correction Model | `Δd_t = β₂·Δr_t + κ·(d_{t-1} − γ·r_{t-1} − α)` |
+| `D_t` | Log-linear balance | Falls when opportunity cost (r−d) or CDS rises |
+| `CDS_t` | Log AR(1) | Always positive, mean reverts |
+
+**Error Correction speed (κ = -0.0580):**
+Only ~5.8% of any disequilibrium gap closes per month. After a +200bps shock, deposit rates take ~14 months to close half the gap — this slow adjustment creates the negative ΔEVE.
+
+**EVE Calculation:**
+```
+EVE = mean(Σ CF_t / (1 + r₀/12)^t) over 1,000 paths
+```
+
+**EVE Sensitivity Results:**
+
+| Scenario | EVE (MB) | ΔEVE (MB) |
+|---|---|---|
+| Base | 9,504 | — |
+| +200bps | 8,290 | −1,214 |
+
+The bank is **liability-sensitive**: rising rates compress the NMD spread and reduce franchise value.
+
 <p align="center">
 <img width="1390" height="985" alt="สอนการพัฒนาแบบจำลอง Non-Maturity Deposit Models (NMD Models) ตั้งแต่ต้นจนจบ" src="https://github.com/user-attachments/assets/e6cd34ac-9510-4fd8-b601-c65fac66d0e2" />
 </p>
-
-#### 6.1 Dynamics Model Simulation
-#### 6.2 Economic Value of Equity (EVE)
 
 ### 7. NMD Floor
 <p align="center">
