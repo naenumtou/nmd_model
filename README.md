@@ -307,7 +307,6 @@ EVE = mean(Σ CF_t / (1 + r₀/12)^t) over 1,000 paths
 ```
 
 **EVE Sensitivity Results:**
-
 | Scenario | EVE (MB) | ΔEVE (MB) |
 |---|---|---|
 | Base | 9,504 | — |
@@ -324,6 +323,26 @@ The bank is **liability-sensitive**: rising rates compress the NMD spread and re
 <img width="1536" height="1024" alt="สอนการพัฒนาแบบจำลอง Non-Maturity Deposit Models (NMD Models) ตั้งแต่ต้นจนจบ" src="https://github.com/user-attachments/assets/d894fdaf-8652-4912-9e38-ce87e81568f2" />
 </p>
 
+**Purpose:** Value the bank's implicit protection against paying negative deposit rates if market rates fall below zero.
+
+**Bachelier (Normal) Model:** Black's model assigns zero value to options far out-of-the-money (K ≪ F), producing nonsensical results near zero rates. Bachelier's normal distribution correctly prices low-strike floors.
+```
+Floorlet_t = D_t × P_t × [(K − F_t)·N(−d) + σ_n·√T·n(d)]
+where  d = (F_t − K) / (σ_n·√T)
+```
+
+**Floor Valuation Results:**
+| Strike | Floor Value | Interpretation |
+|---|---|---|
+| K = 0% | 21 MB | Protection against negative rates |
+| K = d₀ = 0.73% | 43 MB | ATM floor, the protection against any rate cut |
+
+**Greeks (finite difference, scaled per bps) (K = 0%):**
+| Greek | Value | Interpretation |
+|---|---|---|
+| Delta | −0.22 MB/bps | Value falls 0.22 MB per 1bps rate rise |
+| Vega | +0.87 MB/bps | Value rises 0.87 MB per 1bps vol increase |
+
 <p align="center">
 <img width="690" height="985" alt="สอนการพัฒนาแบบจำลอง Non-Maturity Deposit Models (NMD Models) ตั้งแต่ต้นจนจบ" src="https://github.com/user-attachments/assets/7ff6135c-d968-4c02-8a1a-0fa6b8f641ce" />
 </p>
@@ -332,6 +351,39 @@ The bank is **liability-sensitive**: rising rates compress the NMD spread and re
 <p align="center">
 <img width="1536" height="1024" alt="สอนการพัฒนาแบบจำลอง Non-Maturity Deposit Models (NMD Models) ตั้งแต่ต้นจนจบ" src="https://github.com/user-attachments/assets/0cb17ac8-4ec0-45e4-9ee4-9e25b4c2b86b" />
 </p>
+
+**Purpose:** Implement a rolling bond investment strategy that permanently fixes asset duration to match liability WAL.
+
+**The problem — Duration Drift:**
+Buying a single 5Y bond means duration shrinks from 5Y to 1Y over time while liability WAL stays constant that creating an ever-changing mismatch. **The Caterpillar solution:** Split core balance into N equal tranches and invest one per year, all at the same tenor:
+
+```
+avg_duration = target_tenor − (N − 1) / 2
+```
+
+With 5Y tenor and 5 tranches: `avg_duration = 5 − 2 = 3.0Y` — permanently matches WAL = 2.85Y.
+
+**Grid search selects optimal configuration:**
+| Tenor | N | Avg Duration | Gap | Yield | Feasible |
+|---|---|---|---|---|---|
+| 5Y | 3 | 4.0Y | +1.15Y | 4.85% | ✗ |
+| **5Y** | **5** | **3.0Y** | **+0.15Y** | **4.85%** | **✓ Best** |
+| 5Y | 6 | 2.5Y | −0.35Y | 4.85% | ✗ Duration Gap |
+
+**Key Results:**
+| Metric | Value |
+|---|---|
+| Configuration | 5Y tenor / 5 tranches |
+| Tranche size | 770 MB |
+| Portfolio yield | 4.85% |
+| NII annual | 186 MB |
+
+**NII Sensitivity:**
+Only 1 of 5 tranches (20%) rolls per year, so rate shocks pass through slowly:
+```
+ΔNII Year 1     = 770 MB × 1% = +7.7 MB  (per +100bps)
+ΔNII Fully Rolled = 3,823 MB × 1% = +38.5 MB  (per +100bps)
+```
 
 <p align="center">
 <img width="1386" height="985" alt="สอนการพัฒนาแบบจำลอง Non-Maturity Deposit Models (NMD Models) ตั้งแต่ต้นจนจบ" src="https://github.com/user-attachments/assets/262c3aac-5d3e-4526-875f-07e923925990" />
