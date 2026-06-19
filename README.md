@@ -394,6 +394,34 @@ Only 1 of 5 tranches (20%) rolls per year, so rate shocks pass through slowly:
 <img width="1536" height="1024" alt="สอนการพัฒนาแบบจำลอง Non-Maturity Deposit Models (NMD Models) ตั้งแต่ต้นจนจบ" src="https://github.com/user-attachments/assets/1cf328fc-5080-4781-acb7-808aa0e84a22" />
 </p>
 
+**Purpose:** Optimally allocate core balance across Caterpillar, Floating, and Liquidity Buffer to maximise NII under EVE and liquidity constraints.
+
+```
+Maximise   NII = (w_cat × 4.85% + w_float × 2.44% + w_liq × 2.44%) × 3,823
+
+s.t.       Σwᵢ = 1              (fully invested)
+           ΔEVE ≤ 6% × core      (EVE risk limit)
+           w_liq ≥ MIN_LIQ       (liquidity floor)
+           wᵢ ≥ 0               (no short selling)
+```
+
+Solved via SLSQP with 10 random restarts.
+
+**Optimal Allocation:**
+| Strategy | Weight | Notional | NII |
+|---|---|---|---|
+| Caterpillar | 85% | 3,272 MB | 158 MB |
+| Floating | 0% | 0 MB | 0 MB |
+| Liquidity Buffer | 15% | 577 MB | 14 MB |
+| **Total** | **100%** | **3,849 MB** | **172 MB** |
+
+**LCR = 107% ✓** | Dynamic MIN_LIQ = 13.97% (static floor 15%)
+
+**NSFR = 149% ✓** | ASF from NMD = 4,204 MB vs RSF from assets = 2,810 MB
+
+**Asset Repricing Profile:**
+Assets concentrate at Overnight (liquidity buffer) and 5Y+ (caterpillar). No assets exist in intermediate buckets — this is intentional. The bank deliberately *borrows short* (NMD) and *invests long* (5Y bonds) to earn the term premium.
+
 <p align="center">
 <img width="1390" height="985" alt="สอนการพัฒนาแบบจำลอง Non-Maturity Deposit Models (NMD Models) ตั้งแต่ต้นจนจบ" src="https://github.com/user-attachments/assets/48e3f64c-5637-4b42-b90f-46b6472c8b24" />
 </p>
